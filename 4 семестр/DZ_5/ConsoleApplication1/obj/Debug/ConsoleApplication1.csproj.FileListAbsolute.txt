@@ -1,0 +1,10 @@
+D:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\DZ_5\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\DZ_5\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+F:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+F:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+F:\DZ_5\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+F:\DZ_5\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+F:\DZ_5\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

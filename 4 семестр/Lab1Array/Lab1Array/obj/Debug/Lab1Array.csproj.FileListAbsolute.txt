@@ -1,0 +1,5 @@
+F:\Lab1Array\Lab1Array\bin\Debug\Lab1Array.exe.config
+F:\Lab1Array\Lab1Array\bin\Debug\Lab1Array.exe
+F:\Lab1Array\Lab1Array\bin\Debug\Lab1Array.pdb
+F:\Lab1Array\Lab1Array\obj\Debug\Lab1Array.exe
+F:\Lab1Array\Lab1Array\obj\Debug\Lab1Array.pdb

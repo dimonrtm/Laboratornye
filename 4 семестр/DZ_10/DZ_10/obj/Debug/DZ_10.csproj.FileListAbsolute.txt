@@ -1,0 +1,11 @@
+D:\DZ_10\DZ_10\bin\Debug\DZ_10.exe.config
+D:\DZ_10\DZ_10\bin\Debug\DZ_10.exe
+D:\DZ_10\DZ_10\bin\Debug\DZ_10.pdb
+D:\DZ_10\DZ_10\obj\Debug\DZ_10.exe
+D:\DZ_10\DZ_10\obj\Debug\DZ_10.pdb
+F:\DZ_10\DZ_10\bin\Debug\DZ_10.exe.config
+F:\DZ_10\DZ_10\bin\Debug\DZ_10.exe
+F:\DZ_10\DZ_10\bin\Debug\DZ_10.pdb
+F:\DZ_10\DZ_10\obj\Debug\DZ_10.csprojResolveAssemblyReference.cache
+F:\DZ_10\DZ_10\obj\Debug\DZ_10.exe
+F:\DZ_10\DZ_10\obj\Debug\DZ_10.pdb

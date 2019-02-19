@@ -1,0 +1,12 @@
+D:\DZ4\DZ4\bin\Debug\DZ4.exe.config
+D:\DZ4\DZ4\bin\Debug\DZ4.exe
+D:\DZ4\DZ4\bin\Debug\DZ4.pdb
+D:\DZ4\DZ4\obj\Debug\DZ4.exe
+D:\DZ4\DZ4\obj\Debug\DZ4.pdb
+F:\DZ4\DZ4\bin\Debug\DZ4.exe.config
+F:\DZ4\DZ4\obj\Debug\DZ4.exe
+F:\DZ4\DZ4\obj\Debug\DZ4.pdb
+F:\DZ4\DZ4\bin\Debug\DZ4.exe
+F:\DZ4\DZ4\bin\Debug\DZ4.pdb
+F:\DZ4\DZ4\obj\Debug\DZ4.csprojResolveAssemblyReference.cache
+D:\DZ4\DZ4\obj\Debug\DZ4.csprojResolveAssemblyReference.cache

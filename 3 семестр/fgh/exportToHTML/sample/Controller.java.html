@@ -1,0 +1,86 @@
+<html>
+<head>
+<title>Controller.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,128,0); font-weight: bold; }
+.s3 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Controller.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">sample; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.Scene; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.control.Button; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.control.TextArea; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.input.MouseEvent; 
+<a name="l7"><span class="ln">7    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.layout.Pane; 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.paint.Color; 
+<a name="l9"><span class="ln">9    </span></a> 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">import </span><span class="s1">java.util.Random; 
+<a name="l11"><span class="ln">11   </span></a> 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s0">public class </span><span class="s1">Controller { 
+<a name="l13"><span class="ln">13   </span></a>    </span><span class="s0">public </span><span class="s1">Pane cashbox1; 
+<a name="l14"><span class="ln">14   </span></a>    </span><span class="s0">public </span><span class="s1">Pane cashbox2; 
+<a name="l15"><span class="ln">15   </span></a>    </span><span class="s0">public </span><span class="s1">Pane cashbox3; 
+<a name="l16"><span class="ln">16   </span></a>    </span><span class="s0">public </span><span class="s1">Pane cashbox4; 
+<a name="l17"><span class="ln">17   </span></a>    </span><span class="s0">public </span><span class="s1">TextArea textblock; 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s0">public </span><span class="s1">Button begin; 
+<a name="l19"><span class="ln">19   </span></a>   </span><span class="s0">private <a href="Cashbox.java.html">Cashbox</a> </span><span class="s1">cash1; 
+<a name="l20"><span class="ln">20   </span></a>    </span><span class="s0">private <a href="Cashbox.java.html">Cashbox</a> </span><span class="s1">cash2; 
+<a name="l21"><span class="ln">21   </span></a>    </span><span class="s0">private <a href="Cashbox.java.html">Cashbox</a> </span><span class="s1">cash3; 
+<a name="l22"><span class="ln">22   </span></a>    </span><span class="s0">private <a href="Cashbox.java.html">Cashbox</a> </span><span class="s1">cash4; 
+<a name="l23"><span class="ln">23   </span></a>    </span><span class="s0">private </span><span class="s1">Thread th5; 
+<a name="l24"><span class="ln">24   </span></a>    </span><span class="s0">final <a href="Restourant.java.html">Restourant</a> </span><span class="s1">r=</span><span class="s0">new <a href="Restourant.java.html">Restourant</a></span><span class="s1">(</span><span class="s2">&quot;KFC&quot;</span><span class="s1">); 
+<a name="l25"><span class="ln">25   </span></a> 
+<a name="l26"><span class="ln">26   </span></a>    </span><span class="s0">public void </span><span class="s1">init(MouseEvent mouseEvent) { 
+<a name="l27"><span class="ln">27   </span></a> 
+<a name="l28"><span class="ln">28   </span></a>             cash1=</span><span class="s0">new <a href="Cashbox.java.html">Cashbox</a></span><span class="s1">(cashbox1,</span><span class="s3">7000</span><span class="s1">); 
+<a name="l29"><span class="ln">29   </span></a>            cash1.setCoordinatesCashBox(</span><span class="s3">371</span><span class="s1">,</span><span class="s3">29</span><span class="s1">); 
+<a name="l30"><span class="ln">30   </span></a>            r.addCashbox(cash1); 
+<a name="l31"><span class="ln">31   </span></a>         cash2=</span><span class="s0">new <a href="Cashbox.java.html">Cashbox</a></span><span class="s1">(cashbox2,</span><span class="s3">5000</span><span class="s1">); 
+<a name="l32"><span class="ln">32   </span></a>        cash2.setCoordinatesCashBox(</span><span class="s3">370</span><span class="s1">,</span><span class="s3">29</span><span class="s1">); 
+<a name="l33"><span class="ln">33   </span></a>        r.addCashbox(cash2); 
+<a name="l34"><span class="ln">34   </span></a>         cash3=</span><span class="s0">new <a href="Cashbox.java.html">Cashbox</a></span><span class="s1">(cashbox3,</span><span class="s3">6000</span><span class="s1">); 
+<a name="l35"><span class="ln">35   </span></a>        cash3.setCoordinatesCashBox(</span><span class="s3">395</span><span class="s1">,</span><span class="s3">33</span><span class="s1">); 
+<a name="l36"><span class="ln">36   </span></a>        r.addCashbox(cash3); 
+<a name="l37"><span class="ln">37   </span></a>         cash4=</span><span class="s0">new <a href="Cashbox.java.html">Cashbox</a></span><span class="s1">(cashbox4,</span><span class="s3">4000</span><span class="s1">); 
+<a name="l38"><span class="ln">38   </span></a>        cash4.setCoordinatesCashBox(</span><span class="s3">383</span><span class="s1">,</span><span class="s3">35</span><span class="s1">); 
+<a name="l39"><span class="ln">39   </span></a>        r.addCashbox(cash4); 
+<a name="l40"><span class="ln">40   </span></a>        cash1.start(); 
+<a name="l41"><span class="ln">41   </span></a>        cash2.start(); 
+<a name="l42"><span class="ln">42   </span></a>        cash3.start(); 
+<a name="l43"><span class="ln">43   </span></a>        cash4.start(); 
+<a name="l44"><span class="ln">44   </span></a>         th5=</span><span class="s0">new </span><span class="s1">Thread(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l45"><span class="ln">45   </span></a>            @Override 
+<a name="l46"><span class="ln">46   </span></a>            </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l47"><span class="ln">47   </span></a>              </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;</span><span class="s3">100</span><span class="s1">;i++) { 
+<a name="l48"><span class="ln">48   </span></a>                  <a href="Client.java.html">Client</a> c=</span><span class="s0">new <a href="Client.java.html">Client</a></span><span class="s1">(r); 
+<a name="l49"><span class="ln">49   </span></a>                  Random rand=</span><span class="s0">new </span><span class="s1">Random(); 
+<a name="l50"><span class="ln">50   </span></a>                  c.start(); 
+<a name="l51"><span class="ln">51   </span></a>                  </span><span class="s0">try </span><span class="s1">{ 
+<a name="l52"><span class="ln">52   </span></a>                      Thread.sleep(</span><span class="s3">1000</span><span class="s1">); 
+<a name="l53"><span class="ln">53   </span></a>                  } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+<a name="l54"><span class="ln">54   </span></a>                      e.printStackTrace(); 
+<a name="l55"><span class="ln">55   </span></a>                  } 
+<a name="l56"><span class="ln">56   </span></a>              } 
+<a name="l57"><span class="ln">57   </span></a>        }}); 
+<a name="l58"><span class="ln">58   </span></a> 
+<a name="l59"><span class="ln">59   </span></a>        th5.start(); 
+<a name="l60"><span class="ln">60   </span></a>        } 
+<a name="l61"><span class="ln">61   </span></a>} 
+<a name="l62"><span class="ln">62   </span></a> 
+<a name="l63"><span class="ln">63   </span></a> 
+<a name="l64"><span class="ln">64   </span></a> 
+<a name="l65"><span class="ln">65   </span></a></span></pre>
+</body>
+</html>

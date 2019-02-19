@@ -1,0 +1,17 @@
+C:\Users\админъ\Desktop\MyProgram\codeforces\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe.config
+C:\Users\админъ\Desktop\MyProgram\codeforces\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe
+C:\Users\админъ\Desktop\MyProgram\codeforces\Lab1.3\Lab1.3\bin\Debug\Lab1.3.pdb
+C:\Users\админъ\Desktop\MyProgram\codeforces\Lab1.3\Lab1.3\obj\Debug\Lab1.3.exe
+C:\Users\админъ\Desktop\MyProgram\codeforces\Lab1.3\Lab1.3\obj\Debug\Lab1.3.pdb
+D:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe.config
+D:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.exe
+D:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.pdb
+D:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe
+D:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.pdb
+D:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.csprojResolveAssemblyReference.cache
+F:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe.config
+F:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.exe
+F:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.pdb
+F:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.exe
+F:\Lab1.3\Lab1.3\bin\Debug\Lab1.3.pdb
+F:\Lab1.3\Lab1.3\obj\Debug\Lab1.3.csprojResolveAssemblyReference.cache

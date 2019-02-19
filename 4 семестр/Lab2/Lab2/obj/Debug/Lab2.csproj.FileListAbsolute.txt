@@ -1,0 +1,10 @@
+F:\Lab2\Lab2\bin\Debug\Lab2.exe.config
+D:\Lab2\Lab2\bin\Debug\Lab2.exe.config
+D:\Lab2\Lab2\bin\Debug\Lab2.exe
+D:\Lab2\Lab2\bin\Debug\Lab2.pdb
+D:\Lab2\Lab2\obj\Debug\Lab2.exe
+D:\Lab2\Lab2\obj\Debug\Lab2.pdb
+F:\Lab2\Lab2\obj\Debug\Lab2.exe
+F:\Lab2\Lab2\obj\Debug\Lab2.pdb
+F:\Lab2\Lab2\bin\Debug\Lab2.exe
+F:\Lab2\Lab2\bin\Debug\Lab2.pdb

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Lab4Var:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab4Var_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Lab4Var.jar">
+        <element id="module-output" name="Lab4Var" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,5 @@
+D:\DZ_9\DZ_9\bin\Debug\DZ_9.exe.config
+D:\DZ_9\DZ_9\bin\Debug\DZ_9.exe
+D:\DZ_9\DZ_9\bin\Debug\DZ_9.pdb
+D:\DZ_9\DZ_9\obj\Debug\DZ_9.exe
+D:\DZ_9\DZ_9\obj\Debug\DZ_9.pdb

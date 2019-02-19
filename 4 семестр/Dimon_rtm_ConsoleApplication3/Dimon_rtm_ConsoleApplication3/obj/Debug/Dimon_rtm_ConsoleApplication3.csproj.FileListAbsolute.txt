@@ -1,0 +1,8 @@
+C:\Users\Admin\Desktop\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\bin\Debug\Dimon_rtm_ConsoleApplication3.exe.config
+C:\Users\Admin\Desktop\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\bin\Debug\Dimon_rtm_ConsoleApplication3.exe
+C:\Users\Admin\Desktop\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\bin\Debug\Dimon_rtm_ConsoleApplication3.pdb
+C:\Users\Admin\Desktop\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\obj\Debug\Dimon_rtm_ConsoleApplication3.exe
+C:\Users\Admin\Desktop\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\obj\Debug\Dimon_rtm_ConsoleApplication3.pdb
+F:\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\bin\Debug\Dimon_rtm_ConsoleApplication3.exe.config
+F:\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\obj\Debug\Dimon_rtm_ConsoleApplication3.exe
+F:\Dimon_rtm_ConsoleApplication3\Dimon_rtm_ConsoleApplication3\obj\Debug\Dimon_rtm_ConsoleApplication3.pdb

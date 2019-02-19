@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Lab6VarClient:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab6VarClient_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Lab6VarClient.jar">
+        <element id="module-output" name="Lab6VarClient" />
+      </element>
+    </root>
+  </artifact>
+</component>

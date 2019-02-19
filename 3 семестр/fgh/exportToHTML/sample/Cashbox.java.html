@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>Cashbox.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Cashbox.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">sample; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">javafx.application.Platform; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.layout.Pane; 
+<a name="l5"><span class="ln">5    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.paint.Color; 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s0">import </span><span class="s1">javafx.scene.shape.Circle; 
+<a name="l7"><span class="ln">7    </span></a> 
+<a name="l8"><span class="ln">8    </span></a></span><span class="s0">import </span><span class="s1">java.util.LinkedList; 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">import </span><span class="s1">java.util.Random; 
+<a name="l10"><span class="ln">10   </span></a></span><span class="s0">import </span><span class="s1">java.util.concurrent.locks.ReentrantLock; 
+<a name="l11"><span class="ln">11   </span></a> 
+<a name="l12"><span class="ln">12   </span></a></span><span class="s2">/** 
+<a name="l13"><span class="ln">13   </span></a> * Created by админъ on 07.11.2016. 
+<a name="l14"><span class="ln">14   </span></a> */</span><span class="s1"> 
+<a name="l15"><span class="ln">15   </span></a></span><span class="s0">public class </span><span class="s1">Cashbox </span><span class="s0">extends </span><span class="s1">Thread { 
+<a name="l16"><span class="ln">16   </span></a>    </span><span class="s0">private </span><span class="s1">Pane cashBoxPanel; 
+<a name="l17"><span class="ln">17   </span></a>    </span><span class="s0">private int </span><span class="s1">cashBoxX; 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s0">private int </span><span class="s1">cashBoxY; 
+<a name="l19"><span class="ln">19   </span></a>    </span><span class="s0">private int </span><span class="s1">deltaX=</span><span class="s3">40</span><span class="s1">; 
+<a name="l20"><span class="ln">20   </span></a>    </span><span class="s0">private int </span><span class="s1">radius=</span><span class="s3">17</span><span class="s1">; 
+<a name="l21"><span class="ln">21   </span></a>    </span><span class="s0">private </span><span class="s1">ReentrantLock locking=</span><span class="s0">new </span><span class="s1">ReentrantLock(); 
+<a name="l22"><span class="ln">22   </span></a>    LinkedList&lt;Client&gt; clients=</span><span class="s0">new </span><span class="s1">LinkedList&lt;Client&gt;(); 
+<a name="l23"><span class="ln">23   </span></a>    </span><span class="s0">private int </span><span class="s1">speed; 
+<a name="l24"><span class="ln">24   </span></a> 
+<a name="l25"><span class="ln">25   </span></a> 
+<a name="l26"><span class="ln">26   </span></a>    </span><span class="s0">public </span><span class="s1">Cashbox(Pane pane,</span><span class="s0">int </span><span class="s1">speed) 
+<a name="l27"><span class="ln">27   </span></a>    { 
+<a name="l28"><span class="ln">28   </span></a>        cashBoxPanel=pane; 
+<a name="l29"><span class="ln">29   </span></a>        </span><span class="s0">this</span><span class="s1">.speed=speed; 
+<a name="l30"><span class="ln">30   </span></a>    } 
+<a name="l31"><span class="ln">31   </span></a> 
+<a name="l32"><span class="ln">32   </span></a>    </span><span class="s0">public </span><span class="s1">LinkedList&lt;Client&gt; getClients() 
+<a name="l33"><span class="ln">33   </span></a>    { 
+<a name="l34"><span class="ln">34   </span></a>        </span><span class="s0">return </span><span class="s1">clients; 
+<a name="l35"><span class="ln">35   </span></a>    } 
+<a name="l36"><span class="ln">36   </span></a> 
+<a name="l37"><span class="ln">37   </span></a>    </span><span class="s0">public void </span><span class="s1">addClient(<a href="Client.java.html">Client</a> c) 
+<a name="l38"><span class="ln">38   </span></a>    { 
+<a name="l39"><span class="ln">39   </span></a>        </span><span class="s0">final <a href="Client.java.html">Client</a> </span><span class="s1">cl=c; 
+<a name="l40"><span class="ln">40   </span></a>        Platform.runLater(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l41"><span class="ln">41   </span></a>            @Override 
+<a name="l42"><span class="ln">42   </span></a>            </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l43"><span class="ln">43   </span></a>                </span><span class="s0">if</span><span class="s1">(cl.getCircle()==</span><span class="s0">null</span><span class="s1">) 
+<a name="l44"><span class="ln">44   </span></a>                { 
+<a name="l45"><span class="ln">45   </span></a>                Circle cl1=</span><span class="s0">new </span><span class="s1">Circle(); 
+<a name="l46"><span class="ln">46   </span></a>        </span><span class="s0">if</span><span class="s1">(cashBoxPanel.getChildren().size()&lt;=</span><span class="s3">1</span><span class="s1">) 
+<a name="l47"><span class="ln">47   </span></a>        { 
+<a name="l48"><span class="ln">48   </span></a>            cl1.setLayoutX(cashBoxX-deltaX); 
+<a name="l49"><span class="ln">49   </span></a>            cl1.setLayoutY(cashBoxY); 
+<a name="l50"><span class="ln">50   </span></a>        } 
+<a name="l51"><span class="ln">51   </span></a>        </span><span class="s0">else</span><span class="s1"> 
+<a name="l52"><span class="ln">52   </span></a>        { 
+<a name="l53"><span class="ln">53   </span></a>            cl1.setLayoutX(cashBoxPanel.getChildren().get(cashBoxPanel.getChildren().size()-</span><span class="s3">1</span><span class="s1">).getLayoutX()-deltaX); 
+<a name="l54"><span class="ln">54   </span></a>            cl1.setLayoutY(cashBoxY); 
+<a name="l55"><span class="ln">55   </span></a>        } 
+<a name="l56"><span class="ln">56   </span></a>        cl1.setRadius(radius); 
+<a name="l57"><span class="ln">57   </span></a>                Random rand=</span><span class="s0">new </span><span class="s1">Random(); 
+<a name="l58"><span class="ln">58   </span></a>                </span><span class="s0">int </span><span class="s1">red=rand.nextInt(</span><span class="s3">255</span><span class="s1">); 
+<a name="l59"><span class="ln">59   </span></a>                </span><span class="s0">int </span><span class="s1">green=rand.nextInt(</span><span class="s3">255</span><span class="s1">); 
+<a name="l60"><span class="ln">60   </span></a>                </span><span class="s0">int </span><span class="s1">blue=rand.nextInt(</span><span class="s3">255</span><span class="s1">); 
+<a name="l61"><span class="ln">61   </span></a>                cl1.setFill(Color.rgb(red,green,blue)); 
+<a name="l62"><span class="ln">62   </span></a>                cashBoxPanel.getChildren().add(cl1); 
+<a name="l63"><span class="ln">63   </span></a>                cl.setCircle(cl1); 
+<a name="l64"><span class="ln">64   </span></a>            } 
+<a name="l65"><span class="ln">65   </span></a>            </span><span class="s0">else</span><span class="s1"> 
+<a name="l66"><span class="ln">66   </span></a>                { 
+<a name="l67"><span class="ln">67   </span></a>                    </span><span class="s0">if</span><span class="s1">(cashBoxPanel.getChildren().size()&lt;=</span><span class="s3">1</span><span class="s1">) 
+<a name="l68"><span class="ln">68   </span></a>                    { 
+<a name="l69"><span class="ln">69   </span></a>                        cl.getCircle().setLayoutX(cashBoxX-deltaX); 
+<a name="l70"><span class="ln">70   </span></a>                        cl.getCircle().setLayoutY(cashBoxY); 
+<a name="l71"><span class="ln">71   </span></a>                    } 
+<a name="l72"><span class="ln">72   </span></a>                    </span><span class="s0">else</span><span class="s1"> 
+<a name="l73"><span class="ln">73   </span></a>                    { 
+<a name="l74"><span class="ln">74   </span></a>                        cl.getCircle().setLayoutX(cashBoxPanel.getChildren().get(cashBoxPanel.getChildren().size()-</span><span class="s3">1</span><span class="s1">).getLayoutX()-deltaX); 
+<a name="l75"><span class="ln">75   </span></a>                    } 
+<a name="l76"><span class="ln">76   </span></a>                    cashBoxPanel.getChildren().add(cl.getCircle()); 
+<a name="l77"><span class="ln">77   </span></a>                } 
+<a name="l78"><span class="ln">78   </span></a>        }}); 
+<a name="l79"><span class="ln">79   </span></a>        clients.add(c); 
+<a name="l80"><span class="ln">80   </span></a>    } 
+<a name="l81"><span class="ln">81   </span></a> 
+<a name="l82"><span class="ln">82   </span></a>    </span><span class="s0">public </span><span class="s1">Pane getCashBoxPanel() 
+<a name="l83"><span class="ln">83   </span></a>    { 
+<a name="l84"><span class="ln">84   </span></a>        </span><span class="s0">return </span><span class="s1">cashBoxPanel; 
+<a name="l85"><span class="ln">85   </span></a>    } 
+<a name="l86"><span class="ln">86   </span></a> 
+<a name="l87"><span class="ln">87   </span></a>    </span><span class="s0">public void </span><span class="s1">removeClient(<a href="Client.java.html">Client</a> c) 
+<a name="l88"><span class="ln">88   </span></a>    { 
+<a name="l89"><span class="ln">89   </span></a>        </span><span class="s0">final <a href="Client.java.html">Client</a> </span><span class="s1">cl=c; 
+<a name="l90"><span class="ln">90   </span></a>        Platform.runLater(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l91"><span class="ln">91   </span></a>           @Override 
+<a name="l92"><span class="ln">92   </span></a>            </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l93"><span class="ln">93   </span></a>                cashBoxPanel.getChildren().remove(cl.getCircle()); 
+<a name="l94"><span class="ln">94   </span></a>            } 
+<a name="l95"><span class="ln">95   </span></a>        }); 
+<a name="l96"><span class="ln">96   </span></a>        </span><span class="s2">//cashBoxPanel.getChildren().remove(c.getCircle());</span><span class="s1"> 
+<a name="l97"><span class="ln">97   </span></a>    } 
+<a name="l98"><span class="ln">98   </span></a> 
+<a name="l99"><span class="ln">99   </span></a>    </span><span class="s0">public void </span><span class="s1">removeChangeClient(<a href="Client.java.html">Client</a> c) 
+<a name="l100"><span class="ln">100  </span></a>    { 
+<a name="l101"><span class="ln">101  </span></a>        </span><span class="s0">final <a href="Client.java.html">Client</a> </span><span class="s1">cl=c; 
+<a name="l102"><span class="ln">102  </span></a>        Platform.runLater(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l103"><span class="ln">103  </span></a>            @Override 
+<a name="l104"><span class="ln">104  </span></a>            </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l105"><span class="ln">105  </span></a>             </span><span class="s0">int </span><span class="s1">index=cashBoxPanel.getChildren().indexOf(cl.getCircle()); 
+<a name="l106"><span class="ln">106  </span></a>                cashBoxPanel.getChildren().remove(cl.getCircle()); 
+<a name="l107"><span class="ln">107  </span></a>                </span><span class="s0">if</span><span class="s1">(cashBoxPanel.getChildren().size()&gt;</span><span class="s3">1</span><span class="s1">) { 
+<a name="l108"><span class="ln">108  </span></a>                    </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = index; i &lt; cashBoxPanel.getChildren().size(); i++) { 
+<a name="l109"><span class="ln">109  </span></a>                     cashBoxPanel.getChildren().get(i).setLayoutX(cashBoxPanel.getChildren().get(i).getLayoutX()+deltaX); 
+<a name="l110"><span class="ln">110  </span></a>                    } 
+<a name="l111"><span class="ln">111  </span></a>                } 
+<a name="l112"><span class="ln">112  </span></a>            } 
+<a name="l113"><span class="ln">113  </span></a>        }); 
+<a name="l114"><span class="ln">114  </span></a>        clients.remove(c); 
+<a name="l115"><span class="ln">115  </span></a>    } 
+<a name="l116"><span class="ln">116  </span></a> 
+<a name="l117"><span class="ln">117  </span></a>    </span><span class="s0">public void </span><span class="s1">setCoordinatesCashBox(</span><span class="s0">int </span><span class="s1">X,</span><span class="s0">int </span><span class="s1">Y) 
+<a name="l118"><span class="ln">118  </span></a>    { 
+<a name="l119"><span class="ln">119  </span></a>        cashBoxX=X; 
+<a name="l120"><span class="ln">120  </span></a>        cashBoxY=Y; 
+<a name="l121"><span class="ln">121  </span></a>    } 
+<a name="l122"><span class="ln">122  </span></a> 
+<a name="l123"><span class="ln">123  </span></a>    @Override 
+<a name="l124"><span class="ln">124  </span></a>    </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l125"><span class="ln">125  </span></a>        Random rand= </span><span class="s0">new </span><span class="s1">Random(); 
+<a name="l126"><span class="ln">126  </span></a>        </span><span class="s0">while </span><span class="s1">(</span><span class="s0">true</span><span class="s1">) { 
+<a name="l127"><span class="ln">127  </span></a>            <a href="Client.java.html">Client</a> c = </span><span class="s0">null</span><span class="s1">; 
+<a name="l128"><span class="ln">128  </span></a>            locking.lock(); 
+<a name="l129"><span class="ln">129  </span></a>            </span><span class="s0">try</span><span class="s1"> 
+<a name="l130"><span class="ln">130  </span></a>            { 
+<a name="l131"><span class="ln">131  </span></a>                </span><span class="s0">if</span><span class="s1">(clients.size()&gt;</span><span class="s3">0</span><span class="s1">) 
+<a name="l132"><span class="ln">132  </span></a>                { 
+<a name="l133"><span class="ln">133  </span></a>                    </span><span class="s0">try </span><span class="s1">{ 
+<a name="l134"><span class="ln">134  </span></a>                        c = clients.removeFirst(); 
+<a name="l135"><span class="ln">135  </span></a>                    } 
+<a name="l136"><span class="ln">136  </span></a>                    </span><span class="s0">catch</span><span class="s1">(Exception e) 
+<a name="l137"><span class="ln">137  </span></a>                    { 
+<a name="l138"><span class="ln">138  </span></a>                        </span><span class="s0">continue</span><span class="s1">; 
+<a name="l139"><span class="ln">139  </span></a>                    } 
+<a name="l140"><span class="ln">140  </span></a>                } 
+<a name="l141"><span class="ln">141  </span></a> 
+<a name="l142"><span class="ln">142  </span></a>            } 
+<a name="l143"><span class="ln">143  </span></a>            </span><span class="s0">finally </span><span class="s1">{ 
+<a name="l144"><span class="ln">144  </span></a>                locking.unlock(); 
+<a name="l145"><span class="ln">145  </span></a>            } 
+<a name="l146"><span class="ln">146  </span></a> 
+<a name="l147"><span class="ln">147  </span></a>                </span><span class="s0">if</span><span class="s1">(c==</span><span class="s0">null</span><span class="s1">) 
+<a name="l148"><span class="ln">148  </span></a>                { 
+<a name="l149"><span class="ln">149  </span></a>                    </span><span class="s0">try </span><span class="s1">{ 
+<a name="l150"><span class="ln">150  </span></a>                        Thread.sleep(</span><span class="s3">2000</span><span class="s1">); 
+<a name="l151"><span class="ln">151  </span></a>                    } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+<a name="l152"><span class="ln">152  </span></a>                        e.printStackTrace(); 
+<a name="l153"><span class="ln">153  </span></a>                    } 
+<a name="l154"><span class="ln">154  </span></a>                    </span><span class="s0">continue</span><span class="s1">; 
+<a name="l155"><span class="ln">155  </span></a>                } 
+<a name="l156"><span class="ln">156  </span></a>                Platform.runLater(</span><span class="s0">new </span><span class="s1">Runnable() { 
+<a name="l157"><span class="ln">157  </span></a>                    @Override 
+<a name="l158"><span class="ln">158  </span></a>                    </span><span class="s0">public void </span><span class="s1">run() { 
+<a name="l159"><span class="ln">159  </span></a>                      </span><span class="s0">if</span><span class="s1">(cashBoxPanel.getChildren().size()&gt;</span><span class="s3">1</span><span class="s1">) 
+<a name="l160"><span class="ln">160  </span></a>                      { 
+<a name="l161"><span class="ln">161  </span></a>                          </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">1</span><span class="s1">;i&lt;cashBoxPanel.getChildren().size();i++) 
+<a name="l162"><span class="ln">162  </span></a>                          { 
+<a name="l163"><span class="ln">163  </span></a>                              cashBoxPanel.getChildren().get(i).setLayoutX(cashBoxPanel.getChildren().get(i).getLayoutX()+deltaX); 
+<a name="l164"><span class="ln">164  </span></a>                          } 
+<a name="l165"><span class="ln">165  </span></a>                      } 
+<a name="l166"><span class="ln">166  </span></a>                    } 
+<a name="l167"><span class="ln">167  </span></a>                }); 
+<a name="l168"><span class="ln">168  </span></a>                </span><span class="s0">if</span><span class="s1">(!c.startServise(</span><span class="s0">this</span><span class="s1">)) 
+<a name="l169"><span class="ln">169  </span></a>                { 
+<a name="l170"><span class="ln">170  </span></a>                  </span><span class="s0">return</span><span class="s1">; 
+<a name="l171"><span class="ln">171  </span></a>                } 
+<a name="l172"><span class="ln">172  </span></a>                </span><span class="s0">try </span><span class="s1">{ 
+<a name="l173"><span class="ln">173  </span></a>                    Thread.sleep(speed); 
+<a name="l174"><span class="ln">174  </span></a>                } </span><span class="s0">catch </span><span class="s1">(InterruptedException e) { 
+<a name="l175"><span class="ln">175  </span></a>                    e.printStackTrace(); 
+<a name="l176"><span class="ln">176  </span></a>                } 
+<a name="l177"><span class="ln">177  </span></a>                c.endServise(); 
+<a name="l178"><span class="ln">178  </span></a>            } 
+<a name="l179"><span class="ln">179  </span></a>        } 
+<a name="l180"><span class="ln">180  </span></a>    } 
+<a name="l181"><span class="ln">181  </span></a> 
+<a name="l182"><span class="ln">182  </span></a></span></pre>
+</body>
+</html>

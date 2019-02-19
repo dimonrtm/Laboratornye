@@ -1,0 +1,255 @@
+<html>
+<head>
+<title>Graph.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Graph.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">sample; 
+<a name="l2"><span class="ln">2    </span></a> 
+<a name="l3"><span class="ln">3    </span></a></span><span class="s0">import </span><span class="s1">java.util.ArrayList; 
+<a name="l4"><span class="ln">4    </span></a></span><span class="s0">import </span><span class="s1">java.util.Stack; 
+<a name="l5"><span class="ln">5    </span></a> 
+<a name="l6"><span class="ln">6    </span></a></span><span class="s2">/** 
+<a name="l7"><span class="ln">7    </span></a> * Created by админъ on 28.11.2016. 
+<a name="l8"><span class="ln">8    </span></a> */</span><span class="s1"> 
+<a name="l9"><span class="ln">9    </span></a></span><span class="s0">public class </span><span class="s1">Graph { 
+<a name="l10"><span class="ln">10   </span></a>    </span><span class="s0">private int </span><span class="s1">order; 
+<a name="l11"><span class="ln">11   </span></a>    </span><span class="s0">int</span><span class="s1">[][] adjMatrix; 
+<a name="l12"><span class="ln">12   </span></a> 
+<a name="l13"><span class="ln">13   </span></a>    </span><span class="s0">public </span><span class="s1">Graph(</span><span class="s0">int </span><span class="s1">order, </span><span class="s0">int</span><span class="s1">[][] matrix) { 
+<a name="l14"><span class="ln">14   </span></a>        </span><span class="s0">this</span><span class="s1">.order = order; 
+<a name="l15"><span class="ln">15   </span></a>        adjMatrix = matrix; 
+<a name="l16"><span class="ln">16   </span></a>    } 
+<a name="l17"><span class="ln">17   </span></a> 
+<a name="l18"><span class="ln">18   </span></a>    </span><span class="s0">private </span><span class="s1">ArrayList&lt;ArrayList&lt;Integer&gt;&gt; bronKerboshClique() { 
+<a name="l19"><span class="ln">19   </span></a>        ArrayList&lt;Integer&gt; candidates = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(), not = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(), compsub = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(); 
+<a name="l20"><span class="ln">20   </span></a>        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; Clicues = </span><span class="s0">new </span><span class="s1">ArrayList&lt;ArrayList&lt;Integer&gt;&gt;(); 
+<a name="l21"><span class="ln">21   </span></a>        </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; order; i++) { 
+<a name="l22"><span class="ln">22   </span></a>            candidates.add(i); 
+<a name="l23"><span class="ln">23   </span></a>        } 
+<a name="l24"><span class="ln">24   </span></a>        </span><span class="s0">int </span><span class="s1">v = </span><span class="s3">0</span><span class="s1">; 
+<a name="l25"><span class="ln">25   </span></a>        Stack&lt;Integer&gt; stack1 = </span><span class="s0">new </span><span class="s1">Stack&lt;Integer&gt;(); 
+<a name="l26"><span class="ln">26   </span></a>        Stack&lt;ArrayList&lt;Integer&gt;&gt; stack2 = </span><span class="s0">new </span><span class="s1">Stack&lt;ArrayList&lt;Integer&gt;&gt;(); 
+<a name="l27"><span class="ln">27   </span></a> 
+<a name="l28"><span class="ln">28   </span></a>        </span><span class="s0">while </span><span class="s1">(candidates.size() != </span><span class="s3">0 </span><span class="s1">|| compsub.size() != </span><span class="s3">0</span><span class="s1">) { 
+<a name="l29"><span class="ln">29   </span></a>            </span><span class="s0">if </span><span class="s1">((candidates.size() != </span><span class="s3">0</span><span class="s1">)) { 
+<a name="l30"><span class="ln">30   </span></a>                v = candidates.get(</span><span class="s3">0</span><span class="s1">); 
+<a name="l31"><span class="ln">31   </span></a>                ArrayList&lt;Integer&gt; tempCompsub = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(compsub); 
+<a name="l32"><span class="ln">32   </span></a>                ArrayList&lt;Integer&gt; tempCandidates = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(candidates); 
+<a name="l33"><span class="ln">33   </span></a>                ArrayList&lt;Integer&gt; tempNot = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(not); 
+<a name="l34"><span class="ln">34   </span></a>                stack2.push(tempCompsub); 
+<a name="l35"><span class="ln">35   </span></a>                stack2.push(tempCandidates); 
+<a name="l36"><span class="ln">36   </span></a>                stack2.push(tempNot); 
+<a name="l37"><span class="ln">37   </span></a>                stack1.push(v); 
+<a name="l38"><span class="ln">38   </span></a>                compsub.add(v); 
+<a name="l39"><span class="ln">39   </span></a>                </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; order; i++) { 
+<a name="l40"><span class="ln">40   </span></a>                    </span><span class="s0">if </span><span class="s1">(adjMatrix[v][i] == </span><span class="s3">0</span><span class="s1">) { 
+<a name="l41"><span class="ln">41   </span></a>                        candidates.remove((Integer) i); 
+<a name="l42"><span class="ln">42   </span></a>                        not.remove((Integer) i); 
+<a name="l43"><span class="ln">43   </span></a>                    } 
+<a name="l44"><span class="ln">44   </span></a>                } 
+<a name="l45"><span class="ln">45   </span></a>                candidates.remove((Integer) v); 
+<a name="l46"><span class="ln">46   </span></a>            } </span><span class="s0">else </span><span class="s1">{ 
+<a name="l47"><span class="ln">47   </span></a>                </span><span class="s0">if </span><span class="s1">(not.size() == </span><span class="s3">0</span><span class="s1">) { 
+<a name="l48"><span class="ln">48   </span></a>                    Clicues.add(compsub); 
+<a name="l49"><span class="ln">49   </span></a>                } 
+<a name="l50"><span class="ln">50   </span></a>                v = stack1.pop(); 
+<a name="l51"><span class="ln">51   </span></a>                not = stack2.pop(); 
+<a name="l52"><span class="ln">52   </span></a>                candidates = stack2.pop(); 
+<a name="l53"><span class="ln">53   </span></a>                compsub = stack2.pop(); 
+<a name="l54"><span class="ln">54   </span></a>                candidates.remove((Integer) v); 
+<a name="l55"><span class="ln">55   </span></a>                not.add(v); 
+<a name="l56"><span class="ln">56   </span></a>            } 
+<a name="l57"><span class="ln">57   </span></a>        } 
+<a name="l58"><span class="ln">58   </span></a>        </span><span class="s0">return </span><span class="s1">Clicues; 
+<a name="l59"><span class="ln">59   </span></a>    } 
+<a name="l60"><span class="ln">60   </span></a> 
+<a name="l61"><span class="ln">61   </span></a>    </span><span class="s0">private </span><span class="s1">ArrayList&lt;Integer&gt; maxClique(ArrayList&lt;ArrayList&lt;Integer&gt;&gt; cliques) 
+<a name="l62"><span class="ln">62   </span></a>    { 
+<a name="l63"><span class="ln">63   </span></a>        ArrayList&lt;Integer&gt; maxClique=</span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(); 
+<a name="l64"><span class="ln">64   </span></a>        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;cliques.size();i++) 
+<a name="l65"><span class="ln">65   </span></a>        { 
+<a name="l66"><span class="ln">66   </span></a>            </span><span class="s0">if</span><span class="s1">(maxClique.size()&lt;cliques.get(i).size()) 
+<a name="l67"><span class="ln">67   </span></a>            { 
+<a name="l68"><span class="ln">68   </span></a>                maxClique=cliques.get(i); 
+<a name="l69"><span class="ln">69   </span></a>            } 
+<a name="l70"><span class="ln">70   </span></a>        } 
+<a name="l71"><span class="ln">71   </span></a>        </span><span class="s0">return </span><span class="s1">maxClique; 
+<a name="l72"><span class="ln">72   </span></a>    } 
+<a name="l73"><span class="ln">73   </span></a> 
+<a name="l74"><span class="ln">74   </span></a>    </span><span class="s0">public </span><span class="s1">String outputMaxClique() 
+<a name="l75"><span class="ln">75   </span></a>    { 
+<a name="l76"><span class="ln">76   </span></a>        String s=</span><span class="s4">&quot;&quot;</span><span class="s1">; 
+<a name="l77"><span class="ln">77   </span></a>        ArrayList&lt;ArrayList&lt;Integer&gt;&gt;cliques=bronKerboshClique(); 
+<a name="l78"><span class="ln">78   </span></a>        </span><span class="s0">if</span><span class="s1">(cliques.size()==</span><span class="s3">0</span><span class="s1">) 
+<a name="l79"><span class="ln">79   </span></a>        { 
+<a name="l80"><span class="ln">80   </span></a>            s+=</span><span class="s4">&quot;В данном графе нет клик</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+<a name="l81"><span class="ln">81   </span></a>        } 
+<a name="l82"><span class="ln">82   </span></a>        </span><span class="s0">else </span><span class="s1">{ 
+<a name="l83"><span class="ln">83   </span></a>            </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; cliques.size(); i++) { 
+<a name="l84"><span class="ln">84   </span></a>                s += </span><span class="s4">&quot;Максимальная клика № &quot; </span><span class="s1">+ i + </span><span class="s4">&quot;:&quot; </span><span class="s1">+ </span><span class="s4">&quot;{&quot;</span><span class="s1">; 
+<a name="l85"><span class="ln">85   </span></a>                </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">j = </span><span class="s3">0</span><span class="s1">; j &lt; cliques.get(i).size(); j++) { 
+<a name="l86"><span class="ln">86   </span></a>                    s += cliques.get(i).get(j) + </span><span class="s4">&quot;, &quot;</span><span class="s1">; 
+<a name="l87"><span class="ln">87   </span></a>                } 
+<a name="l88"><span class="ln">88   </span></a>                s += </span><span class="s4">&quot;}</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+<a name="l89"><span class="ln">89   </span></a>            } 
+<a name="l90"><span class="ln">90   </span></a>            ArrayList&lt;Integer&gt; maxClique = maxClique(cliques); 
+<a name="l91"><span class="ln">91   </span></a>            s += </span><span class="s4">&quot;Наибольшая клика:&quot;</span><span class="s1">; 
+<a name="l92"><span class="ln">92   </span></a>            s += </span><span class="s4">&quot;{&quot;</span><span class="s1">; 
+<a name="l93"><span class="ln">93   </span></a>            </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; maxClique.size(); i++) { 
+<a name="l94"><span class="ln">94   </span></a>                s += maxClique.get(i) + </span><span class="s4">&quot;, &quot;</span><span class="s1">; 
+<a name="l95"><span class="ln">95   </span></a>            } 
+<a name="l96"><span class="ln">96   </span></a>            s += </span><span class="s4">&quot;}&quot;</span><span class="s1">; 
+<a name="l97"><span class="ln">97   </span></a>        } 
+<a name="l98"><span class="ln">98   </span></a>        </span><span class="s0">return </span><span class="s1">s; 
+<a name="l99"><span class="ln">99   </span></a>    } 
+<a name="l100"><span class="ln">100  </span></a> 
+<a name="l101"><span class="ln">101  </span></a>    </span><span class="s0">private </span><span class="s1">ArrayList&lt;ArrayList&lt;Integer&gt;&gt; bronKerboshIndependentSet() { 
+<a name="l102"><span class="ln">102  </span></a>        ArrayList&lt;Integer&gt; candidates = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(), not = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(), compsub = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(); 
+<a name="l103"><span class="ln">103  </span></a>        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; IndependentSets = </span><span class="s0">new </span><span class="s1">ArrayList&lt;ArrayList&lt;Integer&gt;&gt;(); 
+<a name="l104"><span class="ln">104  </span></a>        </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; order; i++) { 
+<a name="l105"><span class="ln">105  </span></a>            candidates.add(i); 
+<a name="l106"><span class="ln">106  </span></a>        } 
+<a name="l107"><span class="ln">107  </span></a>        </span><span class="s0">int </span><span class="s1">v = </span><span class="s3">0</span><span class="s1">; 
+<a name="l108"><span class="ln">108  </span></a>        Stack&lt;Integer&gt; stack1 = </span><span class="s0">new </span><span class="s1">Stack&lt;Integer&gt;(); 
+<a name="l109"><span class="ln">109  </span></a>        Stack&lt;ArrayList&lt;Integer&gt;&gt; stack2 = </span><span class="s0">new </span><span class="s1">Stack&lt;ArrayList&lt;Integer&gt;&gt;(); 
+<a name="l110"><span class="ln">110  </span></a> 
+<a name="l111"><span class="ln">111  </span></a>        </span><span class="s0">while </span><span class="s1">(candidates.size() != </span><span class="s3">0 </span><span class="s1">|| compsub.size() != </span><span class="s3">0</span><span class="s1">) { 
+<a name="l112"><span class="ln">112  </span></a>            </span><span class="s0">if </span><span class="s1">((candidates.size() != </span><span class="s3">0</span><span class="s1">)) { 
+<a name="l113"><span class="ln">113  </span></a>                v = candidates.get(</span><span class="s3">0</span><span class="s1">); 
+<a name="l114"><span class="ln">114  </span></a>                ArrayList&lt;Integer&gt; tempCompsub = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(compsub); 
+<a name="l115"><span class="ln">115  </span></a>                ArrayList&lt;Integer&gt; tempCandidates = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(candidates); 
+<a name="l116"><span class="ln">116  </span></a>                ArrayList&lt;Integer&gt; tempNot = </span><span class="s0">new </span><span class="s1">ArrayList&lt;Integer&gt;(not); 
+<a name="l117"><span class="ln">117  </span></a>                stack2.push(tempCompsub); 
+<a name="l118"><span class="ln">118  </span></a>                stack2.push(tempCandidates); 
+<a name="l119"><span class="ln">119  </span></a>                stack2.push(tempNot); 
+<a name="l120"><span class="ln">120  </span></a>                stack1.push(v); 
+<a name="l121"><span class="ln">121  </span></a>                compsub.add(v); 
+<a name="l122"><span class="ln">122  </span></a>                </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; order; i++) { 
+<a name="l123"><span class="ln">123  </span></a>                    </span><span class="s0">if </span><span class="s1">(adjMatrix[v][i] == </span><span class="s3">1</span><span class="s1">) { 
+<a name="l124"><span class="ln">124  </span></a>                        candidates.remove((Integer) i); 
+<a name="l125"><span class="ln">125  </span></a>                        not.remove((Integer) i); 
+<a name="l126"><span class="ln">126  </span></a>                    } 
+<a name="l127"><span class="ln">127  </span></a>                } 
+<a name="l128"><span class="ln">128  </span></a>                candidates.remove((Integer) v); 
+<a name="l129"><span class="ln">129  </span></a>            } </span><span class="s0">else </span><span class="s1">{ 
+<a name="l130"><span class="ln">130  </span></a>                </span><span class="s0">if </span><span class="s1">(not.size() == </span><span class="s3">0</span><span class="s1">) { 
+<a name="l131"><span class="ln">131  </span></a>                    IndependentSets.add(compsub); 
+<a name="l132"><span class="ln">132  </span></a>                } 
+<a name="l133"><span class="ln">133  </span></a>                v = stack1.pop(); 
+<a name="l134"><span class="ln">134  </span></a>                not = stack2.pop(); 
+<a name="l135"><span class="ln">135  </span></a>                candidates = stack2.pop(); 
+<a name="l136"><span class="ln">136  </span></a>                compsub = stack2.pop(); 
+<a name="l137"><span class="ln">137  </span></a>                candidates.remove((Integer) v); 
+<a name="l138"><span class="ln">138  </span></a>                not.add(v); 
+<a name="l139"><span class="ln">139  </span></a>            } 
+<a name="l140"><span class="ln">140  </span></a>        } 
+<a name="l141"><span class="ln">141  </span></a>        </span><span class="s0">return </span><span class="s1">IndependentSets; 
+<a name="l142"><span class="ln">142  </span></a>    } 
+<a name="l143"><span class="ln">143  </span></a> 
+<a name="l144"><span class="ln">144  </span></a>    </span><span class="s0">public </span><span class="s1">String outputMaxIndependedSet() 
+<a name="l145"><span class="ln">145  </span></a>    { 
+<a name="l146"><span class="ln">146  </span></a>        String s=</span><span class="s4">&quot;&quot;</span><span class="s1">; 
+<a name="l147"><span class="ln">147  </span></a>        ArrayList&lt;ArrayList&lt;Integer&gt;&gt;independedSets=bronKerboshIndependentSet(); 
+<a name="l148"><span class="ln">148  </span></a>        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;independedSets.size();i++) 
+<a name="l149"><span class="ln">149  </span></a>        { 
+<a name="l150"><span class="ln">150  </span></a>            s+=</span><span class="s4">&quot;Максимальное независимое множество № &quot;</span><span class="s1">+i+</span><span class="s4">&quot;:&quot;</span><span class="s1">+</span><span class="s4">&quot;{&quot;</span><span class="s1">; 
+<a name="l151"><span class="ln">151  </span></a>            </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">j=</span><span class="s3">0</span><span class="s1">;j&lt;independedSets.get(i).size();j++) 
+<a name="l152"><span class="ln">152  </span></a>            { 
+<a name="l153"><span class="ln">153  </span></a>                s+=independedSets.get(i).get(j)+</span><span class="s4">&quot;, &quot;</span><span class="s1">; 
+<a name="l154"><span class="ln">154  </span></a>            } 
+<a name="l155"><span class="ln">155  </span></a>            s+=</span><span class="s4">&quot;}</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+<a name="l156"><span class="ln">156  </span></a>        } 
+<a name="l157"><span class="ln">157  </span></a>        ArrayList&lt;Integer&gt; maxIndependedSet=maxClique(independedSets); 
+<a name="l158"><span class="ln">158  </span></a>        s+=</span><span class="s4">&quot;Наибольшее независимое множество:&quot;</span><span class="s1">; 
+<a name="l159"><span class="ln">159  </span></a>        s+= </span><span class="s4">&quot;{&quot;</span><span class="s1">; 
+<a name="l160"><span class="ln">160  </span></a>        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;maxIndependedSet.size();i++) 
+<a name="l161"><span class="ln">161  </span></a>        { 
+<a name="l162"><span class="ln">162  </span></a>            s+= maxIndependedSet.get(i)+</span><span class="s4">&quot;, &quot;</span><span class="s1">; 
+<a name="l163"><span class="ln">163  </span></a>        } 
+<a name="l164"><span class="ln">164  </span></a>        s+=</span><span class="s4">&quot;}&quot;</span><span class="s1">; 
+<a name="l165"><span class="ln">165  </span></a>        </span><span class="s0">return </span><span class="s1">s; 
+<a name="l166"><span class="ln">166  </span></a>    } 
+<a name="l167"><span class="ln">167  </span></a> 
+<a name="l168"><span class="ln">168  </span></a>    </span><span class="s0">public </span><span class="s1">String printGraph() 
+<a name="l169"><span class="ln">169  </span></a>    { 
+<a name="l170"><span class="ln">170  </span></a>        String s=</span><span class="s4">&quot;&quot;</span><span class="s1">; 
+<a name="l171"><span class="ln">171  </span></a>        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;order;i++) 
+<a name="l172"><span class="ln">172  </span></a>        { 
+<a name="l173"><span class="ln">173  </span></a>            </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">j=</span><span class="s3">0</span><span class="s1">;j&lt;order;j++) 
+<a name="l174"><span class="ln">174  </span></a>            { 
+<a name="l175"><span class="ln">175  </span></a>                s+=adjMatrix[i][j]+</span><span class="s4">&quot; &quot;</span><span class="s1">; 
+<a name="l176"><span class="ln">176  </span></a>            } 
+<a name="l177"><span class="ln">177  </span></a>            s+=</span><span class="s4">&quot;</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+<a name="l178"><span class="ln">178  </span></a>        } 
+<a name="l179"><span class="ln">179  </span></a>        </span><span class="s0">return </span><span class="s1">s; 
+<a name="l180"><span class="ln">180  </span></a>    } 
+<a name="l181"><span class="ln">181  </span></a> 
+<a name="l182"><span class="ln">182  </span></a>    </span><span class="s0">public </span><span class="s1">String printVertexCover() 
+<a name="l183"><span class="ln">183  </span></a>    { 
+<a name="l184"><span class="ln">184  </span></a>        ArrayList&lt;edge&gt; VertCover=vertexCover(); 
+<a name="l185"><span class="ln">185  </span></a> 
+<a name="l186"><span class="ln">186  </span></a>        String s=</span><span class="s4">&quot;&quot;</span><span class="s1">; 
+<a name="l187"><span class="ln">187  </span></a>        </span><span class="s0">if</span><span class="s1">(VertCover.size()==</span><span class="s3">0</span><span class="s1">) 
+<a name="l188"><span class="ln">188  </span></a>        { 
+<a name="l189"><span class="ln">189  </span></a>            s+=</span><span class="s4">&quot;Минимальное вершинное покрытие равно пустому множеству&quot;</span><span class="s1">; 
+<a name="l190"><span class="ln">190  </span></a>        } 
+<a name="l191"><span class="ln">191  </span></a>        </span><span class="s0">else </span><span class="s1">{ 
+<a name="l192"><span class="ln">192  </span></a>            s += </span><span class="s4">&quot;Минимальное вершинное покрытие: {&quot;</span><span class="s1">; 
+<a name="l193"><span class="ln">193  </span></a>            </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s1">; i &lt; VertCover.size(); i++) { 
+<a name="l194"><span class="ln">194  </span></a>                s += VertCover.get(i).getU() + </span><span class="s4">&quot;, &quot; </span><span class="s1">+ VertCover.get(i).getV() + </span><span class="s4">&quot;, &quot;</span><span class="s1">; 
+<a name="l195"><span class="ln">195  </span></a>            } 
+<a name="l196"><span class="ln">196  </span></a> 
+<a name="l197"><span class="ln">197  </span></a>            s += </span><span class="s4">&quot;}</span><span class="s0">\n</span><span class="s4">&quot;</span><span class="s1">; 
+<a name="l198"><span class="ln">198  </span></a>        } 
+<a name="l199"><span class="ln">199  </span></a>        </span><span class="s0">return </span><span class="s1">s; 
+<a name="l200"><span class="ln">200  </span></a>    } 
+<a name="l201"><span class="ln">201  </span></a> 
+<a name="l202"><span class="ln">202  </span></a>    </span><span class="s0">private </span><span class="s1">ArrayList&lt;edge&gt; vertexCover() 
+<a name="l203"><span class="ln">203  </span></a>    { 
+<a name="l204"><span class="ln">204  </span></a>        ArrayList&lt;edge&gt; cover=</span><span class="s0">new </span><span class="s1">ArrayList&lt;edge&gt;(); 
+<a name="l205"><span class="ln">205  </span></a>        ArrayList&lt;edge&gt;E=</span><span class="s0">new </span><span class="s1">ArrayList&lt;edge&gt;(); 
+<a name="l206"><span class="ln">206  </span></a>        </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;order;i++) 
+<a name="l207"><span class="ln">207  </span></a>        { 
+<a name="l208"><span class="ln">208  </span></a>            </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">j=</span><span class="s3">0</span><span class="s1">;j&lt;order;j++) 
+<a name="l209"><span class="ln">209  </span></a>            { 
+<a name="l210"><span class="ln">210  </span></a>                </span><span class="s0">if</span><span class="s1">(adjMatrix[i][j]==</span><span class="s3">1</span><span class="s1">) 
+<a name="l211"><span class="ln">211  </span></a>                { 
+<a name="l212"><span class="ln">212  </span></a>                    E.add(</span><span class="s0">new <a href="edge.java.html">edge</a></span><span class="s1">(i,j)); 
+<a name="l213"><span class="ln">213  </span></a>                } 
+<a name="l214"><span class="ln">214  </span></a>            } 
+<a name="l215"><span class="ln">215  </span></a>        } 
+<a name="l216"><span class="ln">216  </span></a>        </span><span class="s0">while</span><span class="s1">(E.size()!=</span><span class="s3">0</span><span class="s1">) 
+<a name="l217"><span class="ln">217  </span></a>        { 
+<a name="l218"><span class="ln">218  </span></a>            <a href="edge.java.html">edge</a> e=E.get(</span><span class="s3">0</span><span class="s1">); 
+<a name="l219"><span class="ln">219  </span></a>            cover.add(e); 
+<a name="l220"><span class="ln">220  </span></a>            </span><span class="s0">for</span><span class="s1">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s3">0</span><span class="s1">;i&lt;E.size();i++) 
+<a name="l221"><span class="ln">221  </span></a>            { 
+<a name="l222"><span class="ln">222  </span></a>                </span><span class="s0">if</span><span class="s1">(e.getU()==E.get(i).getU()||e.getU()==E.get(i).getV()||e.getV()==E.get(i).getU()||e.getV()==E.get(i).getV()) 
+<a name="l223"><span class="ln">223  </span></a>                { 
+<a name="l224"><span class="ln">224  </span></a>                    E.remove(i); 
+<a name="l225"><span class="ln">225  </span></a>                    i--; 
+<a name="l226"><span class="ln">226  </span></a>                } 
+<a name="l227"><span class="ln">227  </span></a>            } 
+<a name="l228"><span class="ln">228  </span></a>        } 
+<a name="l229"><span class="ln">229  </span></a>        </span><span class="s0">return </span><span class="s1">cover; 
+<a name="l230"><span class="ln">230  </span></a>    } 
+<a name="l231"><span class="ln">231  </span></a> 
+<a name="l232"><span class="ln">232  </span></a>} 
+<a name="l233"><span class="ln">233  </span></a></span></pre>
+</body>
+</html>

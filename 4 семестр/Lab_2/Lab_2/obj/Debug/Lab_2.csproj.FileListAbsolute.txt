@@ -1,0 +1,12 @@
+D:\Lab_2\Lab_2\bin\Debug\Lab_2.exe.config
+D:\Lab_2\Lab_2\bin\Debug\Lab_2.exe
+D:\Lab_2\Lab_2\bin\Debug\Lab_2.pdb
+D:\Lab_2\Lab_2\obj\Debug\Lab_2.exe
+D:\Lab_2\Lab_2\obj\Debug\Lab_2.pdb
+D:\Lab_2\Lab_2\obj\Debug\Lab_2.csprojResolveAssemblyReference.cache
+F:\Lab_2\Lab_2\bin\Debug\Lab_2.exe.config
+F:\Lab_2\Lab_2\obj\Debug\Lab_2.exe
+F:\Lab_2\Lab_2\obj\Debug\Lab_2.pdb
+F:\Lab_2\Lab_2\bin\Debug\Lab_2.exe
+F:\Lab_2\Lab_2\bin\Debug\Lab_2.pdb
+F:\Lab_2\Lab_2\obj\Debug\Lab_2.csprojResolveAssemblyReference.cache

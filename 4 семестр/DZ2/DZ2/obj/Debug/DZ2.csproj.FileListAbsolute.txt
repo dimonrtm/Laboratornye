@@ -1,0 +1,10 @@
+D:\DZ2\DZ2\bin\Debug\DZ2.exe.config
+D:\DZ2\DZ2\bin\Debug\DZ2.exe
+D:\DZ2\DZ2\bin\Debug\DZ2.pdb
+D:\DZ2\DZ2\obj\Debug\DZ2.exe
+D:\DZ2\DZ2\obj\Debug\DZ2.pdb
+F:\DZ2\DZ2\bin\Debug\DZ2.exe.config
+F:\DZ2\DZ2\bin\Debug\DZ2.exe
+F:\DZ2\DZ2\bin\Debug\DZ2.pdb
+F:\DZ2\DZ2\obj\Debug\DZ2.exe
+F:\DZ2\DZ2\obj\Debug\DZ2.pdb
